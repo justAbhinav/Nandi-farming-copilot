@@ -77,175 +77,168 @@ export default function NandiLanding() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
+      <header className="py-4 bg-muted/80 backdrop-blur-md">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo */}
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Sprout className="w-5 h-5 text-primary-foreground" />
+              <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                <Sprout className="w-6 h-6 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-primary">Nandi</span>
+              <Link href="/" className="text-2xl font-bold text-primary">
+                Nandi
+              </Link>
             </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <a
+            <div className="hidden md:flex items-center space-x-4">
+              <Link
                 href="#features"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Features
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#how-it-works"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 How it Works
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#testimonials"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Success Stories
-              </a>
-              <a
+                Testimonials
+              </Link>
+              <Link
                 href="#contact"
-                className="text-foreground hover:text-primary transition-colors"
+                className="text-muted-foreground hover:text-primary transition-colors"
               >
                 Contact
-              </a>
-            </nav>
-
-            {/* Language Selector & CTA */}
+              </Link>
+            </div>
             <div className="hidden md:flex items-center space-x-4">
-              <select
-                value={selectedLanguage}
-                onChange={(e) => setSelectedLanguage(e.target.value)}
-                className="bg-card border border-border rounded-md px-3 py-1 text-sm"
-              >
-                {languages.map((lang) => (
-                  <option key={lang} value={lang}>
-                    {lang}
-                  </option>
-                ))}
-              </select>
-              <ThemeToggle />
-              <Link href="/admin">
-                <Button variant="outline" size="sm">
-                  <Settings className="w-4 h-4 mr-2" />
-                  Admin
-                </Button>
-              </Link>
               <Link href="/register">
-                <Button className="bg-primary hover:bg-primary/90">
-                  Get Started
+                <Button
+                  className="bg-white text-primary hover:bg-white/90"
+                >
+                  Register
+                </Button>
+              </Link>
+              <Link href="/trust-score">
+                <Button
+                  className="border-white text-white hover:bg-white/10 bg-transparent"
+                >
+                  <Shield className="mr-2 w-5 h-5" />
+                  Trust Score
                 </Button>
               </Link>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6" />
-              ) : (
-                <Menu className="w-6 h-6" />
-              )}
-            </button>
-          </div>
-
-          {/* Mobile Menu */}
-          {mobileMenuOpen && (
-            <div className="md:hidden py-4 border-t border-border">
-              <nav className="flex flex-col space-y-4">
-                <a
-                  href="#features"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  Features
-                </a>
-                <a
-                  href="#how-it-works"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  How it Works
-                </a>
-                <a
-                  href="#testimonials"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  Success Stories
-                </a>
-                <a
-                  href="#contact"
-                  className="text-foreground hover:text-primary transition-colors"
-                >
-                  Contact
-                </a>
-                <div className="flex items-center justify-between pt-4 border-t border-border">
-                  <select
-                    value={selectedLanguage}
-                    onChange={(e) => setSelectedLanguage(e.target.value)}
-                    className="bg-card border border-border rounded-md px-3 py-1 text-sm"
-                  >
-                    {languages.map((lang) => (
-                      <option key={lang} value={lang}>
-                        {lang}
-                      </option>
-                    ))}
-                  </select>
-                  <div className="flex items-center space-x-2">
-                    <ThemeToggle />
-                    <Link href="/admin">
-                      <Button variant="outline" size="sm">
-                        Admin
-                      </Button>
-                    </Link>
-                    <Link href="/register">
-                      <Button className="bg-primary hover:bg-primary/90">
-                        Get Started
-                      </Button>
-                    </Link>
-                  </div>
-                </div>
-              </nav>
+            <div className="md:hidden">
+              <Button
+                className="border-primary text-primary"
+                onClick={() => setMobileMenuOpen(true)}
+              >
+                <Menu className="w-5 h-5" />
+              </Button>
             </div>
-          )}
+          </div>
         </div>
       </header>
 
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/50">
+          <div className="absolute top-0 right-0 w-64 h-full bg-background p-4 shadow-lg">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center">
+                  <Sprout className="w-6 h-6 text-primary-foreground" />
+                </div>
+                <span className="text-xl font-bold text-primary">Nandi</span>
+              </div>
+              <Button
+                className="border-primary text-primary"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                <X className="w-5 h-5" />
+              </Button>
+            </div>
+            <div className="flex flex-col space-y-4">
+              <Link
+                href="#features"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Features
+              </Link>
+              <Link
+                href="#how-it-works"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                How it Works
+              </Link>
+              <Link
+                href="#testimonials"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Testimonials
+              </Link>
+              <Link
+                href="#contact"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Contact
+              </Link>
+              <Link href="/register">
+                <Button
+                  className="w-full bg-primary text-primary-foreground"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Register
+                </Button>
+              </Link>
+              <Link href="/trust-score">
+                <Button
+                  className="w-full border-primary text-primary"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Shield className="mr-2 w-5 h-5" />
+                  Trust Score
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
-      <section className="py-12 md:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-              Your AI Financial Co-pilot for{' '}
-              <span className="text-primary">Smart Farming</span>
+      <section className="flex items-center justify-center min-h-screen py-16 bg-white bg-cover bg-center relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-2xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl font-extrabold leading-tight mb-4 text-primary">
+              NANDI: Your AI-Powered Farming Advisor
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Empowering Indian smallholder farmers with AI-powered financial
-              guidance, real-time market intelligence, and satellite-based crop
-              monitoring.
+            <p className="text-lg sm:text-xl text-muted-foreground mb-8">
+              Instant, context-aware crop and advisory support for India’s smallholder farmers. Ask questions in your local language—by voice or text—and get personalized guidance on pest management, weather planning, subsidy schemes, and market trends.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/register">
                 <Button
-                  size="lg"
-                  className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="bg-primary text-white hover:bg-primary/90"
                 >
-                  Start Your Journey
+                  Get Started
                   <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </Link>
               <Link href="/chat">
-                <Button size="lg" variant="outline">
-                  Try Demo Chat
+                <Button
+                  className="border-primary text-primary hover:bg-primary/10 bg-white"
+                >
+                  Try the Demo
                 </Button>
               </Link>
             </div>
-
             {/* Stats */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-12 pt-12 border-t border-border">
               <div className="text-center">
@@ -258,7 +251,7 @@ export default function NandiLanding() {
               </div>
               <div className="text-center">
                 <div className="text-2xl md:text-3xl font-bold text-primary">
-                  ₹50Cr+
+                  ₹50 Cr+
                 </div>
                 <div className="text-sm text-muted-foreground">
                   Loans Facilitated
@@ -269,7 +262,7 @@ export default function NandiLanding() {
                   95%
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  Accuracy Rate
+                  Advisory Accuracy
                 </div>
               </div>
               <div className="text-center">
@@ -277,8 +270,34 @@ export default function NandiLanding() {
                   24/7
                 </div>
                 <div className="text-sm text-muted-foreground">
-                  Support Available
+                  Support
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">95%</div>
+              <div className="text-sm text-muted-foreground">
+                Accuracy Rate
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">24/7</div>
+              <div className="text-sm text-muted-foreground">
+                Support Available
+              </div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-primary mb-2">10,000+</div>
+              <div className="text-sm text-muted-foreground">
+                Farmers Registered
               </div>
             </div>
           </div>
@@ -428,28 +447,24 @@ export default function NandiLanding() {
               Join thousands of farmers who are already using AI to make smarter
               financial decisions
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/register">
-                <Button
-                  size="lg"
-                  variant="secondary"
-                  className="bg-white text-primary hover:bg-white/90"
-                >
-                  Register Now
-                  <ArrowRight className="ml-2 w-5 h-5" />
-                </Button>
-              </Link>
-              <Link href="/trust-score">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white text-white hover:bg-white/10 bg-transparent"
-                >
-                  <Shield className="mr-2 w-5 h-5" />
-                  Check Trust Score
-                </Button>
-              </Link>
-            </div>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <Link href="/register">
+            <Button
+              className="bg-white text-primary hover:bg-white/90"
+            >
+              Register Now
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+          <Link href="/trust-score">
+            <Button
+              className="border-white text-white hover:bg-white/10 bg-transparent"
+            >
+              <Shield className="mr-2 w-5 h-5" />
+              Check Trust Score
+            </Button>
+          </Link>
+        </div>
           </div>
         </div>
       </section>
@@ -530,3 +545,4 @@ export default function NandiLanding() {
     </div>
   );
 }
+
