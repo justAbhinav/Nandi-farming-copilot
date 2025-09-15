@@ -88,7 +88,7 @@ export default function NandiLanding() {
                 Nandi
               </Link>
             </div>
-            <div className="hidden md:flex items-center space-x-4">
+      <div className="hidden md:flex items-center space-x-4">
               <Link
                 href="#features"
                 className="text-muted-foreground hover:text-primary transition-colors"
@@ -105,7 +105,7 @@ export default function NandiLanding() {
                 href="#testimonials"
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
-                Testimonials
+                Success Stories
               </Link>
               <Link
                 href="#contact"
@@ -115,19 +115,24 @@ export default function NandiLanding() {
               </Link>
             </div>
             <div className="hidden md:flex items-center space-x-4">
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="border border-border rounded-md px-2 py-1 text-sm bg-background text-foreground"
+              >
+                {languages.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang}
+                  </option>
+                ))}
+              </select>
+              <ThemeToggle />
+              <Button variant="outline" className="border-border text-foreground">
+                Admin
+              </Button>
               <Link href="/register">
-                <Button
-                  className="bg-white text-primary hover:bg-white/90"
-                >
-                  Register
-                </Button>
-              </Link>
-              <Link href="/trust-score">
-                <Button
-                  className="border-white text-white hover:bg-white/10 bg-transparent"
-                >
-                  <Shield className="mr-2 w-5 h-5" />
-                  Trust Score
+                <Button className="bg-green-600 text-white hover:bg-green-700">
+                  Get Started
                 </Button>
               </Link>
             </div>
@@ -181,7 +186,7 @@ export default function NandiLanding() {
                 className="text-muted-foreground hover:text-primary transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                Testimonials
+                Success Stories
               </Link>
               <Link
                 href="#contact"
@@ -190,21 +195,35 @@ export default function NandiLanding() {
               >
                 Contact
               </Link>
+
+              <select
+                value={selectedLanguage}
+                onChange={(e) => setSelectedLanguage(e.target.value)}
+                className="border border-border rounded-md px-2 py-1 text-sm bg-background text-foreground"
+              >
+                {languages.map((lang) => (
+                  <option key={lang} value={lang}>
+                    {lang}
+                  </option>
+                ))}
+              </select>
+
+              <ThemeToggle />
+
+              <Button
+                variant="outline"
+                className="border-border text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Admin
+              </Button>
+
               <Link href="/register">
                 <Button
-                  className="w-full bg-primary text-primary-foreground"
+                  className="bg-green-600 text-white hover:bg-green-700"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Register
-                </Button>
-              </Link>
-              <Link href="/trust-score">
-                <Button
-                  className="w-full border-primary text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Shield className="mr-2 w-5 h-5" />
-                  Trust Score
+                  Get Started
                 </Button>
               </Link>
             </div>
